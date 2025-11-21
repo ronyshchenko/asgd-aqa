@@ -28,13 +28,9 @@ export class AddNewCargoPage extends AsgdPortalPage {
     await this.senderInfo.press("Tab");
     if (cargoData.country) {
       //await this.country.click();
-      //await this.countr.click();
-      //await page.getByRole("option", { name: "АМЕРИКАНСЬКЕ САМОА" }).click();
       await this.country.fill(cargoData.country);
       await this.country.press("Enter");
     }
-
-    //if (cargoData.country) await this.country.fill(cargoData.country.toString());
   }
 
   async clickSave() {

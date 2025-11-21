@@ -2,17 +2,13 @@ import test, { expect } from "@playwright/test";
 import { credentials } from "config/env";
 //import { NOTIFICATIONS } from "data/cargoPortal/notifications";
 import { generateCargoData } from "data/cargoPortal/cargoes/generateCargoData";
-//import _ from "lodash";
 import { HomePage } from "ui/pages/home.page";
 import { AddNewCargoPage } from "ui/pages/cargo/addNewCargo.page";
 import { MyCargoListPage } from "ui/pages/cargo/myCargoList.page";
 
-//import { CargoListPage } from "ui/pages/cargo/cargoList.page";
-
 test.describe("[ASGD Portal] [MyCargo]", async () => {
   test("Check work my cargo list", async ({ page }) => {
     const homePage = new HomePage(page);
-    //const cargoListPage = new CargoListPage(page);
     const myCargoListPage = new MyCargoListPage(page);
 
     const emailInput = page.locator("#username");

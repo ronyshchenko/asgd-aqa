@@ -1,0 +1,32 @@
+import { test, expect } from "@playwright/test";
+
+test("test", async ({ page }) => {
+  await page.goto("https://test-human-aid.ioc.gov.ua/admin");
+  await page.getByRole("textbox", { name: "Логін" }).click();
+  await page.getByRole("textbox", { name: "Логін" }).fill("ronyshchenko");
+  await page.getByRole("textbox", { name: "Логін" }).press("Tab");
+  await page.getByRole("textbox", { name: "Пароль" }).fill("270872");
+  await page.getByRole("button", { name: "Вхід" }).click();
+  await page.getByRole("link", { name: "Мої вантажі/ Декларація" }).click();
+  await page.getByRole("cell", { name: "KEYBOARD44318" }).click();
+  await page.getByRole("button", { name: "Додати вантаж до Декларації" }).click();
+  await page.getByRole("button", { name: "Open" }).nth(2).click();
+  await page.getByRole("option", { name: "Продовольство" }).click();
+  await page.getByRole("textbox", { name: "Кількість", exact: true }).click();
+  await page.getByRole("textbox", { name: "Кількість", exact: true }).fill("4");
+  await page.getByRole("combobox", { name: "Одиниця виміру" }).click();
+  await page.getByRole("option", { name: "палета" }).click();
+  await page.getByRole("textbox", { name: "Вага, кг" }).click();
+  await page.getByRole("textbox", { name: "Вага, кг" }).fill("4444");
+  await page.getByRole("textbox", { name: "Кількість місць" }).click();
+  await page.getByRole("textbox", { name: "Кількість місць" }).fill("44");
+  await page.getByRole("button", { name: "Зберегти", exact: true }).click();
+  await page.getByRole("button", { name: "ok" }).click();
+  await page.getByRole("textbox", { name: "Найменування вантажу" }).click();
+  await page.getByRole("textbox", { name: "Найменування вантажу" }).fill("4444");
+  await page.getByRole("button", { name: "Зберегти", exact: true }).click();
+  await page.getByRole("button", { name: "Зареєструвати вантаж" }).click();
+  await page.getByRole("button", { name: "Так" }).click();
+  await page.getByRole("button", { name: "OK" }).click();
+  await page.getByRole("button", { name: "До реєстру" }).click();
+});

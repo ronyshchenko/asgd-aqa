@@ -1,10 +1,7 @@
-//import { th } from "@faker-js/faker";
 import { RECIPIENTS } from "data/cargoPortal/cargoes/manufacturers";
 import { AsgdPortalPage } from "../asgdPortal.page";
 import { ICargoInTable } from "data/types/cargo.types";
 import { COUNTRIES } from "data/cargoPortal/cargoes/country";
-//import { SalesPortalPage } from "../salesPortal.page";
-//import { MANUFACTURERS } from "data/salesPortal/products/manufacturers";
 import { CargoDetailsModal } from "./details.modal";
 
 export class MyCargoListPage extends AsgdPortalPage {
@@ -13,7 +10,7 @@ export class MyCargoListPage extends AsgdPortalPage {
   readonly addNewCargoButton = this.page.getByRole("button", { name: "Додати нове надходження гуманітарної допомоги" });
   readonly welcomeText = this.page.getByText("Гуманітарна допомога", { exact: true });
   readonly selectStatusCargo = this.page.getByRole("textbox", { name: "Статус" });
-  readonly notific = this.page.locator("td").nth(7);
+  readonly notific = this.page.getByText("Гуманітарна допомога", { exact: true });
   readonly textBox = this.page.getByLabel("Статус");
   readonly table = this.page.locator(".table-responsive");
 
@@ -26,6 +23,8 @@ export class MyCargoListPage extends AsgdPortalPage {
 
   readonly senderInfoCell = (productName: string) => this.tableRowByName(productName).locator("td").nth(3);
   readonly countryCell = (productName: string) => this.tableRowByName(productName).locator("td").nth(4);
+  readonly statusCell = (productName: string) => this.tableRowByName(productName).locator("td").nth(7);
+
   readonly createdOnCell = (nameOrIndex: string | number) =>
     typeof nameOrIndex === "string"
       ? this.tableRowByName(nameOrIndex).locator("td").nth(3)
@@ -35,7 +34,6 @@ export class MyCargoListPage extends AsgdPortalPage {
   readonly detailsButton = (productName: string) => this.tableRowByName(productName).getByTitle("Details");
   readonly deleteButton = (productName: string) =>
     this.tableRowByName(productName).locator("//button[@id[contains(., 'delete')]]");
-  //getByTitle("Delete");
 
   readonly uniqueElement = this.welcomeText;
 
@@ -44,29 +42,6 @@ export class MyCargoListPage extends AsgdPortalPage {
   }
 
   async getCargoData(productName: string): Promise<ICargoInTable> {
-    //Variant 1
-    // return {
-    //   name: await this.nameCell(productName).innerText(),
-    //   price: +(await this.priceCell(productName).innerText()).replace("$", ""),
-    //   manufacturer: (await this.manufacturerCell(productName).innerText()) as MANUFACTURERS,
-    //   createdOn: await this.createdOnCell(productName).innerText(),
-    // };
-
-    //variant 2
-    // const [name, price, manufacturer, createdOn] = await Promise.all([
-    //   this.nameCell(productName).textContent(),
-    //   this.priceCell(productName).textContent(),
-    //   this.manufacturerCell(productName).textContent(),
-    //   this.createdOnCell(productName).textContent(),
-    // ]);
-    // return {
-    //   name: name!,
-    //   price: +price!.replace("$", ""),
-    //   manufacturer: manufacturer! as MANUFACTURERS,
-    //   createdOn: createdOn!,
-    // };
-
-    //variant 3
     const [recipient, nameSender, senderInfo, country, createdOn] = await this.tableRowByName(productName)
       .locator("td")
       .allInnerTexts();
@@ -78,7 +53,6 @@ export class MyCargoListPage extends AsgdPortalPage {
       createdOn: createdOn!,
     };
   }
-
   // async getTableData(): Promise<ICargoInTable[]> {
   //   const data: ICargoInTable[] = [];
 

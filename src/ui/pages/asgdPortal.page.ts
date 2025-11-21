@@ -8,7 +8,7 @@ export abstract class AsgdPortalPage extends BasePage {
   abstract readonly uniqueElement: Locator;
 
   async waitForOpened() {
-    await expect(this.uniqueElement).toBeVisible({ visible: true, timeout: 7000 });
+    await expect(this.uniqueElement).toBeVisible({ visible: true, timeout: 4000 });
     //await expect(this.spinner).toHaveCount(0);
   }
 

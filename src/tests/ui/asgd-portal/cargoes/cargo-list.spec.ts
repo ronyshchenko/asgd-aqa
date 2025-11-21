@@ -3,7 +3,6 @@ import { credentials } from "config/env";
 //import { NOTIFICATIONS } from "data/salesPortal/notifications";
 //import { generateProductData } from "data/salesPortal/products/generateProductData";
 import { HomePage } from "ui/pages/home.page";
-//import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { CargoListPage } from "ui/pages/cargo/cargoList.page";
 
 test.describe("[ASGD Portal] [Cargo]", async () => {
